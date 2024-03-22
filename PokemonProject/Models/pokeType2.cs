@@ -1,4 +1,4 @@
-﻿namespace BlazorProjectAttemp2.Model
+﻿namespace PokemonProject.Model
 {
     public class pokeType2
     {

@@ -1,9 +1,14 @@
-﻿@inject PokeClient client;
-<PageTitle>Home</PageTitle>
+﻿@using PokemonProject.Models;
+@using PokemonProject.Controllers;
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>Home</h1>
 
 <div class="container">
     <div class="pokemon-row">
-        @foreach (var pokemon in pokemonList)
+        @foreach (var pokemon in Model)
         {
             <div class="pokemon-card">
                 <img src="@pokemon.sprites.front_default" alt="Pokemon Sprite" />

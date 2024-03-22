@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using PokemonProject.Model;
 using PokemonProject.Models;
 using System.Diagnostics;
 
@@ -6,27 +7,22 @@ namespace PokemonProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly PokeClient _client;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(PokeClient client)
         {
-            _logger = logger;
+            _client = client;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            var pokemonList = new List<Pokemon>();
+            for (int i = 1; i < 20; i++)
+            {
+                pokemonList.Add(await _client.GetPokemon(i.ToString()));
+            }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(pokemonList);
         }
     }
 }

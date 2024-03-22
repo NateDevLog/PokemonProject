@@ -1,4 +1,4 @@
-﻿using BlazorProjectAttemp2.Model;
+﻿using PokemonProject.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
