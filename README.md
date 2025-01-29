@@ -1,1 +1,1 @@
-Pokemon project I made for my college ASP.net course. Has a few bugs and is lacking in functionality, but was a fun project regardless.
+Pokemon project I made for my college ASP.net course. It uses the poke-api to display information about various pokemon. It's kind of like a search engine? Has a few bugs and is lacking in functionality, but was a fun project regardless. 
