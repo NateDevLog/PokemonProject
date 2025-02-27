@@ -1,0 +1,42 @@
+﻿@*Importing the model and controller*@
+
+@using PokemonProject.Models;
+@using PokemonProject.Controllers;
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>Pokemon Search</h1>
+
+@*Creating the search bar, and directing the user to the Details view.*@
+<div class="searchBar">
+
+    <form method="get" action="@Url.Action("Details")">
+        <input type="text" name="searchString" placeholder="Search Pokémon" />
+        <button type="submit"><img src="https://i.pinimg.com/originals/32/eb/23/32eb230b326ee3c76e64f619a06f6ebb.png" /></button>
+    </form>
+</div>
+
+@*Creating the pokemon card*@
+<table class="pokemon-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th></th>
+            <th>Name</th>
+            <th>HP</th>
+            <th>Attack</th>
+            <th>Defense</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pokemon in Model)
+        {
+            <tr>
+                <td></td>
+                <td><img src="@pokemon.sprites.front_default" /></td>
+                <td>@pokemon.name</td>
+            </tr>
+        }
+    </tbody>
+</table>

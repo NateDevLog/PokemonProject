@@ -1,25 +1,90 @@
-﻿@using PokemonProject.Models;
+﻿@*Importing the model and controller*@
+
+@using PokemonProject.Models;
 @using PokemonProject.Controllers;
 @{
     ViewBag.Title = "Home";
 }
 
-<h1>Home</h1>
+@*Creating the search bar, and directing the user to the Details view.*@
+<div class="searchBar">
 
+    <form method="get" action="@Url.Action("Details")">
+        <input type="text" name="searchString" placeholder="Search Pokémon" />
+        <button type="submit"><img src="Images/pokeball.png" /></button>
+    </form>
+</div>
+
+<form action="@Url.Action("Index")" method="get">
+    <div ="filter-section">
+        <!-- Filter by ID-->
+        <label for="pokemonId" color="white">ID:</label>
+        <input type="number" name="pokemonId" id="pokemonId" min="1" max="1010" />
+
+        <!-- Filter by type -->
+        <label for="pokemonType">Type:</label>
+        <select name="pokemonType" id="pokemonType">
+            <option value="">All</option>
+            <option value="fire">fire</option>
+            <option value="water">Water</option>
+            <option value="grass">Grass</option>
+            <option value="electric">Electric</option>
+            <option value="psychic">Psychic</option>
+            <option value="fighting">Fighting</option>
+            <option value="dark">Dark</option>
+            <option value="steel">Steel</option>
+            <option value="fairy">Fairy</option>
+            <option value="ground">Ground</option>
+            <option value="rock">Rock</option>
+            <option value="ghost">Ghost</option>
+            <option value="bug">Bug</option>
+            <option value="dragon">Dragon</option>
+            <option value="ice">Ice</option>
+            <option value="poison">Poison</option>
+            <option value="normal">Normal</option>
+            <option value="flying">Flying</option>
+        </select>
+
+        <label for="stat"></label>
+        <select name="stat" id="stat">
+            <option value="">None</option>
+            <option value="hp">HP</option>
+            <option value="attack">Attack</option>
+            <option value="special-attack">Special Attack</option>
+            <option value="special-defense">Special Defense</option>
+            <option value="speed">Speed</option>
+        </select>
+
+        <label for="minStatValue">Min Value:</label>
+        <input type="number" name="minStatValue" id="minStatValue" min="1" />
+
+        <button type="submit">Filter</button>
+    </div>
+</form>
+
+@*Creating the pokemon card*@
 <div class="container">
     <div class="pokemon-row">
         @foreach (var pokemon in Model)
         {
             <div class="pokemon-card">
                 <img src="@pokemon.sprites.front_default" alt="Pokemon Sprite" />
-                <h4 class="pokemon-name">@pokemon.name</h4>
-                <div class="type-row">
+                <a href="@Url.Action("Details", "Home", new { searchString = pokemon.name})" class="pokemon-name">
+                    <h4>@pokemon.name</h4>
+                </a>
+                <div class="pokemon-row">
                     @foreach (var type in pokemon.types)
                     {
-                        <span>@type.type.name</span>
+                        <span class="pokemon-type" style="background-color: @PokemonHelper.GetBackgroundColor(@type.type.name)">@type.type.name</span>
                     }
                 </div>
             </div>
         }
     </div>
 </div>
+
+<script>
+    function redirectToDetails(pokemonName) {
+        window.location.href = '/Home/Details?searchString=' + encodeURIComponent(pokemonName);
+    }
+</script>

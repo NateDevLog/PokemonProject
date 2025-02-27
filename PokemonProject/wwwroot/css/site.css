@@ -1,22 +1,172 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    color: white;
+}
+
+
+h5 {
+    text-align: left;
+}
+
+body {
+    background-image: url(/Images/background.jpg);
+    background-attachment: scroll;
+    background-repeat: repeat-y;
+}
+/*css rules for the pokemon card*/
+.pokemon-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-card {
+    width: 250px;
+    height: 300px;
+    padding: 10px;
+    background-color: rgb(240, 234, 222);
+    align-items: center;
+    text-align: center;
+    border-color: goldenrod;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+img {
+    width: 85%;
+    height: 60%;
+}
+
+.type-row {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: black;
+}
+
+.pokemon-type {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: white;
+    text-transform: uppercase;
+}
+
+/*css styles for the detail View*/
+.detail-card {
+    width: 900px;
+    height: 1100px;
+    padding: 10px;
+    background-color: rgb(240, 234, 222);
+    align-items: center;
+    text-align: center;
+    border-color: goldenrod;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+
+/*css styles for the search bar*/
+.searchBar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 60px;
+}
+
+    .searchBar input {
+        background: transparent;
+        flex: 1;
+        border: 0;
+        outline: none;
+        padding: 15px 30px;
+        font-size: 20px;
+    }
+
+::placeholder {
+    color: black;
+}
+
+.searchBar button {
+    height: 70px;
+    width: 70px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    float: right;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+label {
+    color: white;
+}
+
+.filter-section label {
+    font-weight: bold;
+}
+
+.filter-section select,
+.filter-section input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }

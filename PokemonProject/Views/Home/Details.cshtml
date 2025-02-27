@@ -1,0 +1,47 @@
+﻿@using PokemonProject.Models;
+@using PokemonProject.Controllers;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@*same thing as in the index*@
+
+<div class="searchBar">
+    <form method="get" action="@Url.Action("Details")">
+        <input type="text" name="searchString" placeholder="Search Pokémon" />
+        <button type="submit"><img src="/Images/pokeball.png" /></button>
+    </form>
+</div>
+
+<div class="container">
+    <div class="pokemon-row">
+        @foreach (var pokemon in Model)
+        {
+            <div class="detail-card">
+                <img src="@pokemon.sprites.front_default" alt="Pokemon Sprite" />
+                <h4 class="pokemon-name">@pokemon.name</h4>
+                <div class="pokemon-row">
+                    @foreach (var type in pokemon.types)
+                    {
+                        <span class="pokemon-type" style="background-color: @PokemonHelper.GetBackgroundColor(@type.type.name)">@type.type.name</span>
+                    }
+                </div>
+                <div> Weight: @PokemonHelper.GetPokemonWeight(@pokemon.weight) kg <br /> Height: @PokemonHelper.GetPokemonHeight(@pokemon.height)</div>
+                @foreach (var stat in pokemon.stats)
+                {
+                    <div class="stat-bar">
+                        <h5 class="stat">@stat.stat.name: @stat.base_stat</h5>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" role="progressbar"
+                                 style="width: @stat.base_stat%; background-color: @PokemonHelper.GetStatColor(stat.stat.name)"
+                                 aria-valuenow="200" aria-valuemin="0" aria-valuemax="200"> </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>

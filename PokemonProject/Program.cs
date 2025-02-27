@@ -2,6 +2,8 @@ using PokemonProject.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpClient<PokeClient>();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<PokeClient>();
