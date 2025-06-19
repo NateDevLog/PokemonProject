@@ -24,6 +24,16 @@ namespace PokemonProject.Controllers
             return JsonSerializer.Deserialize<Pokemon>(content);
         }
 
+        public async Task<int> GetTotalPokemonCount()
+        {
+            var response = await this.Client.GetAsync("https://pokeapi.co/api/v2/pokemon-species/");
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            using var doc = JsonDocument.Parse(content);
+            return doc.RootElement.GetProperty("count").GetInt32();
+        }
+
 
         public async Task<Pokemon> GetPokemonSpecies(string id)
         {

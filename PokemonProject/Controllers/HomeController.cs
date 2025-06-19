@@ -16,12 +16,18 @@ namespace PokemonProject.Controllers
         }
 
         //logic used to create the pokemon cards on the index.
-        public async Task<IActionResult> Index(int? pokemonId, string pokemonType, string stat, int? minStatValue)
+        public async Task<IActionResult> Index(int? pokemonId, string pokemonType, string stat, int? minStatValue, int count = 30)
         {
+
+            int totalPokemonCount = await _client.GetTotalPokemonCount();
+            count = Math.Min(count, totalPokemonCount); // Don't exceed max pokemon
+            
             var pokemonList = new List<Pokemon>();
-            for (int i = 1; i < 30; i++)
+            for (int i = 1; i <= count; i++)
             {
-                pokemonList.Add(await _client.GetPokemon(i.ToString()));
+                var pokemon = await _client.GetPokemon(i.ToString());
+
+                pokemonList.Add(pokemon);
             }
 
             // Filter by ID if provided
@@ -48,6 +54,8 @@ namespace PokemonProject.Controllers
                     .ToList();
             }
 
+            ViewBag.Count = count;
+            ViewBag.TotalPokemonCount = totalPokemonCount;
             return View(pokemonList);
         }
 
@@ -60,8 +68,6 @@ namespace PokemonProject.Controllers
                 pokemonDetails.Add(await _client.GetPokemon(searchString.ToString()));
 
             }
-
-
 
             return View(pokemonDetails);
         }

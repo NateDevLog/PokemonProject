@@ -83,6 +83,19 @@
     </div>
 </div>
 
+@if (ViewBag.Count < ViewBag.TotalPokemonCount)
+{
+    var nextCount = ViewBag.Count + 30;
+    <a href="?count=@nextCount" class="">Load More</a>
+}
+@*
+<div>
+    <form method="get" action="@Url.Action("Index")">
+        <input type="hidden" name="count" value="@(ViewBag.Count + 30)"/>
+        <button type="submit" class="">Load More</button>
+    </form>
+</div>
+*@
 <script>
     function redirectToDetails(pokemonName) {
         window.location.href = '/Home/Details?searchString=' + encodeURIComponent(pokemonName);
